@@ -6,13 +6,10 @@ _baseUrl ="http://172.30.144.1"
 
 def getBaseUrl():
     return _baseUrl
-
 def getArdenUrl():
     return _baseUrl + ":9500/" 
 
-#url = getBaseUrl()
-#url = getBaseUrl() + ":9500/"
-url = getArdenUrl()
+url = getArdenUrl()      #url = getBaseUrl()  #url = getBaseUrl() + ":9500/"
 payload = {
             'email': "sean@aqua.com",
             'password': "pw"
