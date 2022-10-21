@@ -1,0 +1,37 @@
+from urllib import response
+import requests
+from requests.auth import HTTPBasicAuth
+
+_baseUrl ="http://172.30.144.1"
+
+def getBaseUrl():
+    return _baseUrl
+
+def getArdenUrl():
+    return _baseUrl + ":9500/" 
+
+url = getArdenUrl() #url = getBaseUrl() #url = getBaseUrl() + ":9500/"
+payload = {
+            'email': "sean@aqua.com",
+            'password': "pw"
+        }
+
+response = requests.post("{0}api/arden/user/login".format(url), json=payload, auth = HTTPBasicAuth('email','password'))
+print('Response Code ' + str(response.status_code))
+if response.status_code == 200:
+    print('Login succesful: ' + response.text)
+
+def default_headers():
+    headers = {
+        'Accept': "*/*",
+        'Accept-Encoding': "gzip, deflate",
+        'Content-Type': "application/json",
+        'Cache-Control': "no-cache",
+        'Host': "localhost:5000", 
+    }
+    return headers
+
+response = requests.get("{0}api/arden/user/viewer".format(url), headers=default_headers())
+print('Viewer_Response Code ' + str(response.status_code))
+if response.status_code == 200:
+    print('Viewer_succesful: ' + response.text)
